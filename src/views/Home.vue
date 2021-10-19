@@ -1,28 +1,28 @@
 <template>
 	<div>
 		<div class="container">
-			<Navbar />
-			<Search />
-			<Description />
+			<NavbarComponent />
+			<SearchComponent />
+			<DescriptionComponent />
 		</div>
-		<Footer />
+		<FooterComponent />
 	</div>
 </template>
 
 <script>
 
-	import Navbar from '../components/Navbar.vue'
-	import Search from '../components/Search.vue'
-	import Description from '../components/Description.vue'
-	import Footer from '../components/Footer.vue'
+	import NavbarComponent from '../components/NavbarComponent.vue'
+	import SearchComponent from '../components/SearchComponent.vue'
+	import DescriptionComponent from '../components/DescriptionComponent.vue'
+	import FooterComponent from '../components/FooterComponent.vue'
 
 	export default {
 		name: 'Home',
 		components: {
-			Navbar,
-			Search,
-			Description,
-			Footer
+			NavbarComponent,
+			SearchComponent,
+			DescriptionComponent,
+			FooterComponent
 		}
 	}
 </script>

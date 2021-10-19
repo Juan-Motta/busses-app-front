@@ -2,7 +2,7 @@
 	<div>
 		<div class="container">
 			<NavbarComponent />
-			<h1>Acerca de Nostros</h1>
+			<h1>Nuestras Rutas</h1>
 		</div>
 		<FooterComponent />
 	</div>
@@ -14,7 +14,7 @@
 	import FooterComponent from '../components/FooterComponent.vue'
 
 	export default {
-		name: 'About',
+		name: 'Rutas',
 		components: {
 			NavbarComponent,
 			FooterComponent

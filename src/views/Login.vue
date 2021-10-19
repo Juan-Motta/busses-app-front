@@ -2,7 +2,7 @@
 	<div>
 		<div class="container">
 			<NavbarComponent />
-			<h1>Acerca de Nostros</h1>
+			<LoginComponent />
 		</div>
 		<FooterComponent />
 	</div>
@@ -11,12 +11,14 @@
 <script>
 
 	import NavbarComponent from '../components/NavbarComponent.vue'
+	import LoginComponent from '../components/LoginComponent.vue'
 	import FooterComponent from '../components/FooterComponent.vue'
 
 	export default {
-		name: 'About',
+		name: 'Login',
 		components: {
 			NavbarComponent,
+			LoginComponent,
 			FooterComponent
 		}
 	}

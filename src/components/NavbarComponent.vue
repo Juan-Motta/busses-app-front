@@ -19,7 +19,7 @@
 				</div>
 				<div class="col-sm-12 col-md-3 col-lg-2 mt-3 navbar-route">
 					<span>
-						<router-link :to="{ name: 'Nosotros'}">Nosotros</router-link>
+						<router-link :to="{ name: 'About'}">Nosotros</router-link>
 					</span>
 				</div>
 			</div>
@@ -27,10 +27,10 @@
 		<div class="col-sm-12 col-md-4 ">
 			<div class="row">
 				<div class="col-sm-12 col-md-5 col-lg-4 offset-md-1 offset-lg-2 navbar-button mt-3">
-					<span>Iniciar Sesion</span>
+					<router-link :to="{ name: 'Login'}">Iniciar Sesion</router-link>
 				</div>
 				<div class="col-sm-12 col-md-5 col-lg-4 offset-md-1 offset-lg-2 navbar-button mt-3">
-					<span>Registro</span>
+					<router-link :to="{ name: 'CreateUser'}">Registro</router-link>
 				</div>
 			</div>
 		</div>
@@ -84,5 +84,10 @@
 		align-items: center;
 		justify-content: center;
 		cursor: pointer;
+	}
+
+	.navbar-button a {
+		text-decoration: none;
+		color: white;
 	}
 </style>

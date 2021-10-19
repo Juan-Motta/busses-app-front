@@ -26,6 +26,17 @@ npm run serve
 ```
 El servidor por defecto empezara a correr en el puerto 8080
 
+## Caracteristicas
+
+### Home Page
+
+La Home Page esta diseñada para que el usuario tenga una impresion instantanea de lo que hace la pagina y la empresa, es posible encontrar a la mano la barra de navegacion, las opciones de registro e inicio de sesion y la caja de busqueda la cual esta destinada para realizar un filtrado del los viajes. Asi mismo la aplicacion ofrece un estilo responsive el cual se puede adaptar a cualquier dispositivo moderno.
+
+<div align=center>
+<img src="https://user-images.githubusercontent.com/78517969/137931640-d16584bf-8c8c-4b9d-b7cd-5eab2801ce21.png" width="600"> <img src="https://user-images.githubusercontent.com/78517969/137932164-2a949c4b-0abe-4ba2-9e6d-317db2de5c4d.png" width="250">
+</div>
+
+
 ## Notas
 
 **0.1.0**  
@@ -34,9 +45,10 @@ El servidor por defecto empezara a correr en el puerto 8080
 * Configurado Vue Router
 * Configurado Vuex
 * Configurado Axios
-* Configurado Boostrap
+* Configurado Bootstrap
 
 **0.1.1**
 
 * Creada la vista Home de la aplicacion
+
 
