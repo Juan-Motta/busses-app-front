@@ -47,8 +47,15 @@ La Home Page esta diseñada para que el usuario tenga una impresion instantanea 
 * Configurado Axios
 * Configurado Bootstrap
 
-**0.1.1**
+**0.2.0**
 
 * Creada la vista Home de la aplicacion
+
+**0.3.0**
+
+* Creada la vista registro y login
+* Creadas validaciones para la vista registro
+* Creada conexion HTTP con la API
+* Creacion de usuarios habilitada
 
 
