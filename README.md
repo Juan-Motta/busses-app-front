@@ -45,7 +45,7 @@ La Home Page esta diseñada para que el usuario tenga una impresion instantanea 
 * Configurado Vue Router
 * Configurado Vuex
 * Configurado Axios
-* Configurado Boostrap
+* Configurado Bootstrap
 
 **0.1.1**
 
