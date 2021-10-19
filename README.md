@@ -55,7 +55,12 @@ La Home Page esta diseñada para que el usuario tenga una impresion instantanea 
 
 * Creada la vista registro y login
 * Creadas validaciones para la vista registro
-* Creada conexion con la API
+* Creada conexion con la API /api/users
 * Creacion de usuarios habilitada
+
+**0.3.1**
+
+* Creada sugerencia de trayectos en la vista Home en los campos origen y destino
+* Creada conexion con la API a la ruta /api/trayectos
 
 

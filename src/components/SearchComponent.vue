@@ -8,7 +8,7 @@
 			></b-img>
 		</div>
 		<div class="col-sm-12 col-md-5  formulario">
-			<form @submit.prevent="buscarViaje">
+			<form @submit.prevent="getCiudades">
 				<h2 class="row align-self-start form-title">Planea tu viaje</h2>
 				<div class="row align-items-start form-group">
 					<label
@@ -87,23 +87,52 @@
 
 <script>
 
+	import axios from 'axios'
+
 	export default {
 		data() {
 			return {
+
 				origen: '',
 				destino: '',
-				ciudades: Object.freeze(['BOGOTA'])
+				ciudades: []
 			}
 		},
 		methods: {
 			buscarViaje() {
-				console.log(this.origen);
+				console.log(this.trayectos);
+			},
+			getTrayectos() {
+				axios.get("https://overidebusapp.herokuapp.com/api/trayectos/")
+					.then(res => {
+						this.trayectos = res.data
+						this.getCiudades()
+					})
+					.catch(err => {
+						this.getTrayectos()
+					})
+			},
+			getCiudades() {
+				const ciudadesDestino = this.trayectos.map(data => {
+					return data.destino
+				})
+				const ciudadesOrigen = this.trayectos.map(data => {
+					return data.origen
+				})
+				const ciudades = [...ciudadesDestino, ...ciudadesOrigen]
+				const ciudadesSinRepetir = ciudades.filter((item, index) => {
+					return ciudades.indexOf(item) === index;
+				})
+				this.ciudades = Object.freeze(ciudadesSinRepetir)
 			}
 		},
 		watch: {
 			origen() {
 
 			}
+		},
+		created() {
+			this.getTrayectos()
 		}
 	}
 </script>
