@@ -55,7 +55,7 @@ La Home Page esta diseñada para que el usuario tenga una impresion instantanea 
 
 * Creada la vista registro y login
 * Creadas validaciones para la vista registro
-* Creada conexion HTTP con la API
+* Creada conexion con la API
 * Creacion de usuarios habilitada
 
 
