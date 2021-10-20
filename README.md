@@ -63,4 +63,6 @@ La Home Page esta diseñada para que el usuario tenga una impresion instantanea 
 * Creada sugerencia de trayectos en la vista Home en los campos origen y destino
 * Creada conexion con la API a la ruta /api/trayectos
 
+**0.3.2**
 
+* Creadas validaciones para el filtro de viajes de la vista Home

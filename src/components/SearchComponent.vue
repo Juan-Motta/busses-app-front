@@ -8,7 +8,7 @@
 			></b-img>
 		</div>
 		<div class="col-sm-12 col-md-5  formulario">
-			<form @submit.prevent="getCiudades">
+			<form @submit.prevent="buscarViaje">
 				<h2 class="row align-self-start form-title">Planea tu viaje</h2>
 				<div class="row align-items-start form-group">
 					<label
@@ -27,7 +27,10 @@
 							:key="ciudad"
 						>{{ ciudad }}</option>
 					</datalist>
-
+					<div
+						v-if="error.origen"
+						class="error"
+					>{{ error.origen }}</div>
 				</div>
 
 				<div class="row align-items-start form-group">
@@ -48,6 +51,10 @@
 							:key="ciudad"
 						>{{ ciudad }}</option>
 					</datalist>
+					<div
+						v-if="error.destino"
+						class="error"
+					>{{ error.destino }}</div>
 				</div>
 
 				<div class="row align-items-start form-group">
@@ -58,7 +65,12 @@
 					<b-form-input
 						type="date"
 						id="fecha"
+						v-model="fecha"
 					></b-form-input>
+					<div
+						v-if="error.fecha"
+						class="error"
+					>{{ error.fecha }}</div>
 				</div>
 
 				<div class="row align-items-start form-group">
@@ -71,7 +83,12 @@
 						min="0"
 						type="number"
 						id="pasajeros"
+						v-model="pasajeros"
 					></b-form-input>
+					<div
+						v-if="error.pasajeros"
+						class="error"
+					>{{ error.pasajeros }}</div>
 				</div>
 
 				<input
@@ -88,19 +105,28 @@
 <script>
 
 	import axios from 'axios'
+	import moment from 'moment-timezone'
 
 	export default {
 		data() {
 			return {
-
 				origen: '',
 				destino: '',
-				ciudades: []
+				fecha: '',
+				pasajeros: '',
+				ciudades: [],
+				error: {
+					origen: '',
+					destino: '',
+					fecha: '',
+					pasajeros: '',
+				},
+				isValidData: false
 			}
 		},
 		methods: {
 			buscarViaje() {
-				console.log(this.trayectos);
+				console.log(this.validations());
 			},
 			getTrayectos() {
 				axios.get("https://overidebusapp.herokuapp.com/api/trayectos/")
@@ -124,11 +150,57 @@
 					return ciudades.indexOf(item) === index;
 				})
 				this.ciudades = Object.freeze(ciudadesSinRepetir)
+			},
+			validations() {
+				const data = {
+					origen: this.origen,
+					destino: this.destino,
+					fecha: this.fecha,
+					pasajeros: this.pasajeros,
+				}
+
+				for (const value in data) {
+					this.isValidData = true
+					if (!data[value]) {
+						this.isValidData = false
+					}
+				}
+
+				return data
 			}
 		},
 		watch: {
 			origen() {
-
+				if (this.ciudades.includes(this.origen) && this.origen) {
+					this.error.origen = ''
+				} else {
+					this.error.origen = 'La ciudad de origen no es valida o no esta disponible'
+				}
+			},
+			destino() {
+				if (this.ciudades.includes(this.origen) && this.destino) {
+					this.error.destino = ''
+				} else {
+					this.error.destino = 'La ciudad de origen no es valida o no esta disponible'
+				}
+			},
+			fecha() {
+				const time = moment().tz('America/Bogota').format("HH:mm:ss").split(":")
+				const seconds = ((Number(time[0]) * 60) + Number(time[1])) * 60 + Number(time[2])
+				const now = moment().tz('America/Bogota').unix() - seconds
+				const selectedTime = moment(this.fecha).unix()
+				if (selectedTime >= now) {
+					this.error.fecha = ''
+				} else {
+					this.error.fecha = 'La fecha seleccionada es invalida'
+				}
+			},
+			pasajeros() {
+				if (this.pasajeros > 0) {
+					this.error.pasajeros = ''
+				} else {
+					this.error.pasajeros = 'El numero de pasajeros debe ser mayor a 0'
+				}
 			}
 		},
 		created() {
@@ -179,5 +251,11 @@
 		color: white;
 		font-weight: bold;
 		padding: 3px 20px;
+	}
+
+	.error {
+		color: red;
+		text-align: left;
+		margin-top: 3px;
 	}
 </style>
