@@ -66,3 +66,11 @@ La Home Page esta diseñada para que el usuario tenga una impresion instantanea 
 **0.3.2**
 
 * Creadas validaciones para el filtro de viajes de la vista Home
+
+**0.4.0**
+
+* Creada vista viajes
+* Creada conexion con la API /api/trayectos
+* Añadida barra de filtrado en la vista viajes
+* Añadidas validaciones para el formulario de la barra de filtrado
+* Añadida opcion para mostrar lista de viajes disponibles de acuerdo a formulario de filtro o a la informacion ingresada en la vista Home

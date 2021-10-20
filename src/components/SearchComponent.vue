@@ -114,6 +114,7 @@
 				destino: '',
 				fecha: '',
 				pasajeros: '',
+				trayectos: [],
 				ciudades: [],
 				error: {
 					origen: '',
@@ -126,7 +127,10 @@
 		},
 		methods: {
 			buscarViaje() {
-				console.log(this.validations());
+				const data = this.validations()
+				if (this.isValidData) {
+					this.$router.push({ name: 'Viajes', params: data })
+				}
 			},
 			getTrayectos() {
 				axios.get("https://overidebusapp.herokuapp.com/api/trayectos/")
