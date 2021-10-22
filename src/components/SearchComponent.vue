@@ -8,7 +8,10 @@
 			></b-img>
 		</div>
 		<div class="col-sm-12 col-md-5  formulario">
-			<form @submit.prevent="buscarViaje">
+			<form
+				@submit.prevent="buscarViaje"
+				autocomplete="off"
+			>
 				<h2 class="row align-self-start form-title">Planea tu viaje</h2>
 				<div class="row align-items-start form-group">
 					<label

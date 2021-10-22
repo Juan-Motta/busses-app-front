@@ -24,7 +24,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-12 col-md-4 ">
+		<div class="col-sm-12 col-md-4">
 			<div class="row">
 				<div class="col-sm-12 col-md-5 col-lg-4 offset-md-1 offset-lg-2 navbar-button mt-3">
 					<router-link :to="{ name: 'Login'}">Iniciar Sesion</router-link>
@@ -34,6 +34,22 @@
 				</div>
 			</div>
 		</div>
+		<!-- <div class="col-sm-12 col-md-4 mt-3">
+			<div class="row">
+				<div class="col-sm-12 col-md-6 col-lg-7 navbar-name">
+					<b-icon-person-circle
+						scale="2"
+						style="margin-right: 20px"
+					></b-icon-person-circle>
+					<p>
+						Juan Andres
+					</p>
+				</div>
+				<div class="col-sm-12 col-md-5 col-lg-4 offset-md-1 offset-lg-1 navbar-button mt-3 mb-3">
+					<router-link :to="{ name: 'CreateUser'}">Cerrar Sesion</router-link>
+				</div>
+			</div>
+		</div> -->
 	</div>
 </template>
 
@@ -89,5 +105,20 @@
 	.navbar-button a {
 		text-decoration: none;
 		color: white;
+	}
+
+	.navbar-name {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.navbar-name p {
+		font-size: 20px;
+	}
+
+	.navbar-name:hover {
+		color: #8b30e8;
+		cursor: pointer;
 	}
 </style>

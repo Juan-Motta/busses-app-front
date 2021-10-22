@@ -74,3 +74,10 @@ La Home Page esta diseñada para que el usuario tenga una impresion instantanea 
 * Añadida barra de filtrado en la vista viajes
 * Añadidas validaciones para el formulario de la barra de filtrado
 * Añadida opcion para mostrar lista de viajes disponibles de acuerdo a formulario de filtro o a la informacion ingresada en la vista Home
+
+**0.4.1**
+
+* Creada conexion en la vista Login con la API 
+* Configurado store de la aplicacion
+* Ahora cuando un usuario se logea correctamente sus datos personales se almacenan en el store
+* Ahora cuando un usuario se logea correctamente se almacenan los tokens de autenticacion en el localStorage

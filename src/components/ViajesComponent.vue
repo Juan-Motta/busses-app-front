@@ -338,6 +338,7 @@
 		padding: 15px 30px;
 		border-radius: 5px;
 		cursor: pointer;
+		margin-bottom: 25px;
 	}
 
 	.viaje:hover {

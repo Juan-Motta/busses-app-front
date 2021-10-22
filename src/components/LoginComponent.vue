@@ -49,6 +49,9 @@
 </template>
 
 <script>
+
+	import { setLogin, isLoged } from '../helpers/LoginHelper'
+
 	export default {
 		data() {
 			return {
@@ -58,6 +61,14 @@
 		},
 		methods: {
 			login() {
+				setLogin(this.username, this.password)
+					.then(res => {
+						console.log(res);
+						isLoged()
+					})
+					.catch(err => {
+						console.log(err);
+					})
 
 			}
 		}
