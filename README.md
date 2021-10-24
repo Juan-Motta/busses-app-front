@@ -40,7 +40,7 @@ La Home Page esta diseñada para que el usuario tenga una impresion instantanea 
 
 El sistema de logeo de la aplicacion es un modulo que se encarga de controlar todo el manejo de las credenciales de autenticacion obtenidas desde la API. Este modulo esta basado en promesas y su objetivo es verificar si existen o no credenciales almacenadas en el localstorage, si son validas o si fueron entregadas credenciales para realizar una peticion a la API y guardar las nuevas credenciales entregadas, asi como el de guardar el estado de la autenticacion y la informacion personal del usuario en el storage de la aplicacion.
 
-![Logica logeo](https://user-images.githubusercontent.com/78517969/138581832-5902d58b-59be-4a26-8a93-e449ea7f68ab.png)
+![Logica logeo (1)](https://user-images.githubusercontent.com/78517969/138601392-46a7fe87-84fb-424d-8e11-b3384c3a273f.png)
 
 
 ## Notas
