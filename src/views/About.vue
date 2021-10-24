@@ -1,23 +1,13 @@
 <template>
 	<div>
-		<div class="container">
-			<NavbarComponent />
-			<h1>Acerca de Nostros</h1>
-		</div>
-		<FooterComponent />
+		<h1>Acerca de Nostros</h1>
 	</div>
 </template>
 
 <script>
-
-	import NavbarComponent from '../components/NavbarComponent.vue'
-	import FooterComponent from '../components/FooterComponent.vue'
-
 	export default {
 		name: 'About',
 		components: {
-			NavbarComponent,
-			FooterComponent
 		}
 	}
 </script>

@@ -50,7 +50,7 @@
 
 <script>
 
-	import { setLogin, isLoged } from '../helpers/LoginHelper'
+	import { isLoged } from '../helpers/LoginHelper'
 
 	export default {
 		data() {
@@ -61,15 +61,8 @@
 		},
 		methods: {
 			login() {
-				setLogin(this.username, this.password)
-					.then(res => {
-						console.log(res);
-						isLoged()
-					})
-					.catch(err => {
-						console.log(err);
-					})
-
+				isLoged(this.username, this.password)
+				this.$router.push({ name: 'Home' })
 			}
 		}
 	}

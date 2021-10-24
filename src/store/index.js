@@ -1,23 +1,23 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     user: {
-      id: '',
-      username: '',
-      email: '',
-      name: '',
-      last_name: '',
-      document: '',
-      birth: '',
-      phone: '',
-      is_active: false,
-      is_staff: false
-    }
+      id: null,
+      username: null,
+      email: null,
+      name: null,
+      last_name: null,
+      document: null,
+      birth: null,
+      phone: null,
+      is_active: null,
+      is_staff: null
+    },
+    isLoged: false
   },
   mutations: {
     setUser(state, user) {
@@ -33,31 +33,44 @@ export default new Vuex.Store({
       state.user.is_staff = user.is_staff
     },
     deleteUser(state) {
-      state.user.id = ''
-      state.user.username = ''
-      state.user.email = ''
-      state.user.name = ''
-      state.user.last_name = ''
-      state.user.document = ''
-      state.user.birth = ''
-      state.user.phone = ''
-      state.user.is_active = ''
-      state.user.is_staff = ''
+      state.user.id = null
+      state.user.username = null
+      state.user.email = null
+      state.user.name = null
+      state.user.last_name = null
+      state.user.document = null
+      state.user.birth = null
+      state.user.phone = null
+      state.user.is_active = null
+      state.user.is_staff = null
+    },
+    setIsLoged(state, value) {
+      state.isLoged = value
     }
   },
   actions: {
-    getUser(context, { id, token }) {
-      console.log(id, token, 'storage');
-      const config = {
-        headers: { Authorization: `Bearer ${token}` }
-      };
-      axios.get(`https://overidebusapp.herokuapp.com/api/users/${id}`, config)
-        .then(res => {
-          context.commit('setUser', { id, ...res.data })
-        })
-        .catch(err => {
-          console.log(err);
-        })
+
+  },
+  getters: {
+    getUserData(state) {
+      return {
+        id: state.user.id,
+        username: state.user.username,
+        email: state.user.email,
+        name: state.user.name,
+        last_name: state.user.last_name,
+        document: state.user.document,
+        birth: state.user.birth,
+        phone: state.user.phone,
+        is_active: state.user.is_active,
+        is_staff: state.user.is_staff
+      }
+    },
+    getIsLoged(state) {
+      return state.isLoged
+    },
+    getName(state) {
+      return state.user.name
     }
   },
   modules: {

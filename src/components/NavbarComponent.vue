@@ -24,7 +24,34 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-12 col-md-4">
+		<div
+			class="col-sm-12 col-md-4 mt-3"
+			v-if="isLoged"
+		>
+			<div class="row">
+				<div class="col-sm-12 col-md-6 col-lg-7 navbar-name">
+					<b-icon-person-circle
+						scale="2"
+						style="margin-right: 20px"
+					></b-icon-person-circle>
+					<p>
+						{{ name }}
+					</p>
+				</div>
+				<div class="col-sm-12 col-md-5 col-lg-4 offset-md-1 offset-lg-1 navbar-button mt-3 mb-3">
+					<div v-on:click="setLogout">
+						<router-link :to="{ name: 'Home'}">
+							Cerrar sesion
+						</router-link>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div
+			class="col-sm-12 col-md-4"
+			v-else
+		>
 			<div class="row">
 				<div class="col-sm-12 col-md-5 col-lg-4 offset-md-1 offset-lg-2 navbar-button mt-3">
 					<router-link :to="{ name: 'Login'}">Iniciar Sesion</router-link>
@@ -34,24 +61,31 @@
 				</div>
 			</div>
 		</div>
-		<!-- <div class="col-sm-12 col-md-4 mt-3">
-			<div class="row">
-				<div class="col-sm-12 col-md-6 col-lg-7 navbar-name">
-					<b-icon-person-circle
-						scale="2"
-						style="margin-right: 20px"
-					></b-icon-person-circle>
-					<p>
-						Juan Andres
-					</p>
-				</div>
-				<div class="col-sm-12 col-md-5 col-lg-4 offset-md-1 offset-lg-1 navbar-button mt-3 mb-3">
-					<router-link :to="{ name: 'CreateUser'}">Cerrar Sesion</router-link>
-				</div>
-			</div>
-		</div> -->
 	</div>
 </template>
+
+<script>
+	import { isLoged, logout } from '../helpers/LoginHelper'
+	export default {
+		methods: {
+			setLogout() {
+				logout()
+				this.$router.push({ name: 'Home' })
+			},
+		},
+		computed: {
+			name() {
+				return this.$store.getters.getName
+			},
+			isLoged() {
+				return this.$store.getters.getIsLoged
+			}
+		},
+		created() {
+			isLoged()
+		}
+	}
+</script>
 
 <style scoped>
 	.borde {
