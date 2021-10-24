@@ -81,3 +81,9 @@ La Home Page esta diseñada para que el usuario tenga una impresion instantanea 
 * Configurado store de la aplicacion
 * Ahora cuando un usuario se logea correctamente sus datos personales se almacenan en el store
 * Ahora cuando un usuario se logea correctamente se almacenan los tokens de autenticacion en el localStorage
+
+**0.5.0**
+
+* Recontruido el sistema de autenticacion, nuevo sistema de autenticacion basado en promesas
+* Corregidos errores de autenticacion
+* Optimizado layout de la aplicacion, ahora la barra de navegacion y el footer no se renderizan si no se han visto modificados

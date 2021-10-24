@@ -65,12 +65,15 @@
 </template>
 
 <script>
-	import { isLoged, logout } from '../helpers/LoginHelper'
+	import { isLoged, isDisconected } from '../helpers/LoginHelper'
 	export default {
 		methods: {
 			setLogout() {
-				logout()
-				this.$router.push({ name: 'Home' })
+				isDisconected()
+					.then(res => {
+						console.log(res);
+						this.$router.push({ name: 'Home' })
+					})
 			},
 		},
 		computed: {
@@ -82,7 +85,12 @@
 			}
 		},
 		created() {
-			isLoged()
+			isLoged().then(res => {
+				console.log(res);
+			})
+				.catch(err => {
+					console.log(err);
+				})
 		}
 	}
 </script>

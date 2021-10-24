@@ -62,7 +62,13 @@
 		methods: {
 			login() {
 				isLoged(this.username, this.password)
-				this.$router.push({ name: 'Home' })
+					.then(res => {
+						console.log(res);
+						this.$router.push({ name: 'Home' })
+					})
+					.catch(err => {
+						console.log(err);
+					})
 			}
 		}
 	}
