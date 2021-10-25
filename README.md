@@ -47,9 +47,14 @@ El sistema de logeo de la aplicacion es un modulo que se encarga de controlar to
 El sistema de autenticacion se encuentra definido en el el archivo index.js dentro de la carpeta router. Para definir las rutas protegidas se utiliza la meta propiedad requiresAuth junto con el metodo beforeEach que a nivel global pregunta si el usuario esta autenticado verificando la variable en el storage de la aplicacion isLoged.
 
 ```javascript
-meta: {
+{
+    path: '/reserva',
+    name: 'Reserva',
+    meta: {
       requiresAuth: true
     },
+    component: () => import(/* webpackChunkName: "register" */ '../views/Reserva.vue')
+}
 ```
 
 ```javascript
