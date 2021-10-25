@@ -42,6 +42,29 @@ El sistema de logeo de la aplicacion es un modulo que se encarga de controlar to
 
 ![Logica logeo (1)](https://user-images.githubusercontent.com/78517969/138601392-46a7fe87-84fb-424d-8e11-b3384c3a273f.png)
 
+### Sistema de autenticacion
+
+El sistema de autenticacion se encuentra definido en el el archivo index.js dentro de la carpeta router. Para definir las rutas protegidas se utiliza la meta propiedad requiresAuth junto con el metodo beforeEach que a nivel global pregunta si el usuario esta autenticado verificando la variable en el storage de la aplicacion isLoged.
+
+```javascript
+meta: {
+      requiresAuth: true
+    },
+```
+
+```javascript
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.state.isLoged) {
+      next();
+    } else {
+      next({ name: "Login" });
+    }
+  } else {
+    next();
+  }
+});
+```
 
 ## Notas
 
