@@ -157,6 +157,7 @@
 
 	.navbar-name p {
 		font-size: 20px;
+		margin-top: 15px;
 	}
 
 	.navbar-name:hover {

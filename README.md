@@ -93,3 +93,8 @@ El sistema de logeo de la aplicacion es un modulo que se encarga de controlar to
 * Recontruido el sistema de autenticacion, nuevo sistema de autenticacion basado en promesas
 * Corregidos errores de autenticacion
 * Optimizado layout de la aplicacion, ahora la barra de navegacion y el footer no se renderizan si no se han visto modificados
+
+**0.6.0**
+
+* Agregado sistema de proteccion de rutas, ahora cuando un usuario quiera cceder a una ruta protegida sin estar logeado se le pediran las credenciales de autenticacion, de lo contrario se devolvera a la pagina Home
+* Agregada nueva vista, reservas (protegida)

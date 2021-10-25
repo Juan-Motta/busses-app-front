@@ -103,18 +103,27 @@ import store from '@/store/index.js';
 const startLoginProcess = (username, password) => {
     /* Promesa que inicia todo el proceso de logeo y llama a la promesa que verifica si hay tokens guardados en el localstorage */
     return new Promise((resolve) => {
-        resolve(isTokenStored(username, password))
+        resolve(isThereCredentials(username, password))
     })
 }
 
-const isTokenStored = (username, password) => {
-    /* Promesa que verifica si existen tokens de autenticacion guardados en el local storage, si se le entrega un usuario y contraseña, llama a la promesa encargada de obtener los tokens, de lo contrario si el token de acceso es valido llama a la promesa que obtiene la informacion del usuario, si no llama a la promesa que refresca el token de acceso */
+const isThereCredentials = (username, password) => {
+    /* Promesa que verifica si existen credenciales de autenticacion, si existen llama a la promesa encargada de obtener los token de acceso, sino llama a la promesa encargada de verificar si existen token de acceso en el local storage */
+    return new Promise(resolve => {
+        if (username && password) {
+            resolve(getTokens(username, password))
+        } else {
+            resolve(isTokenStored())
+        }
+    })
+}
+
+const isTokenStored = () => {
+    /* Promesa que verifica si existen tokens de autenticacion guardados en el local storage, si el token de acceso es valido llama a la promesa que obtiene la informacion del usuario, si no llama a la promesa que refresca el token de acceso */
     return new Promise((resolve, reject) => {
         const accessTokenStored = localStorage.getItem('access')
         const refreshTokenStored = localStorage.getItem('refresh')
-        if (username && password) {
-            resolve(getTokens(username, password))
-        } else if (accessTokenStored && refreshTokenStored) {
+        if (accessTokenStored && refreshTokenStored) {
             if (isTokenValid(accessTokenStored)) {
                 const userId = getUserIdFromToken(accessTokenStored)
                 resolve(getUserData(userId))

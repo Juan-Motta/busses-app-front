@@ -1,5 +1,50 @@
 <template>
 	<div>
+		<div>
+			<b-modal
+				id="modal"
+				centered
+				hide-footer
+				hide-header
+			>
+				<div class="col-sm-12 col-md-12 formulario">
+					<form @submit.prevent="login">
+						<h2 class="row form-title mb-5">Ingreso</h2>
+						<div class="row align-items-start form-group">
+							<label
+								for="username"
+								class="row"
+							>Usuario:</label>
+							<b-form-input
+								placeholder="Ingrese su nombre de usuario"
+								id="username"
+								v-model="username"
+							></b-form-input>
+						</div>
+
+						<div class="row align-items-start form-group">
+							<label
+								for="password"
+								class="row"
+							>Contraseña:</label>
+							<b-form-input
+								placeholder="Ingrese su contraseña"
+								type="password"
+								id="password"
+								v-model="password"
+							></b-form-input>
+						</div>
+
+						<input
+							type="submit"
+							value="Entrar"
+							class="btn mt-3"
+						>
+
+					</form>
+				</div>
+			</b-modal>
+		</div>
 		<h2>Nuestros Viajes</h2>
 		<div class="row mb-5 mt-5">
 			<div class="col-sm-12 col-md-3 formulario">
@@ -141,10 +186,14 @@
 	import axios from 'axios'
 	import moment from 'moment-timezone'
 
+	import { isLoged } from '../helpers/LoginHelper'
+
 
 	export default {
 		data() {
 			return {
+				username: '',
+				password: '',
 				destino: '',
 				origen: '',
 				fecha: '',
@@ -228,7 +277,11 @@
 			},
 			selectedViaje() {
 				//TODO: Seleccionar viaje
-				console.log('seleccionado')
+				if (this.$store.getters.getIsLoged) {
+					this.$router.push('Reserva')
+				} else {
+					this.$bvModal.show('modal')
+				}
 			},
 			buscarViaje() {
 				this.validations()
@@ -251,6 +304,16 @@
 						this.isValidData = false
 					}
 				}
+			},
+			login() {
+				isLoged(this.username, this.password)
+					.then(res => {
+						console.log(res);
+						this.$router.push({ name: 'Reserva' })
+					})
+					.catch(err => {
+						console.log(err);
+					})
 			}
 		},
 		watch: {

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Viajes from '../views/Viajes.vue'
+import store from '@/store/index.js';
 
 Vue.use(VueRouter)
 
@@ -35,6 +36,14 @@ const routes = [
     path: '/register',
     name: 'CreateUser',
     component: () => import(/* webpackChunkName: "register" */ '../views/CreateUser.vue')
+  },
+  {
+    path: '/reserva',
+    name: 'Reserva',
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import(/* webpackChunkName: "register" */ '../views/Reserva.vue')
   }
 ]
 
@@ -43,5 +52,17 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.state.isLoged) {
+      next();
+    } else {
+      next({ name: "Login" });
+    }
+  } else {
+    next();
+  }
+});
 
 export default router
