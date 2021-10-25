@@ -43,7 +43,7 @@ const routes = [
     meta: {
       requiresAuth: true
     },
-    component: () => import(/* webpackChunkName: "register" */ '../views/Reserva.vue')
+    component: () => import(/* webpackChunkName: "reserva" */ '../views/Reserva.vue')
   }
 ]
 

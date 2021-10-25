@@ -53,7 +53,7 @@ El sistema de autenticacion se encuentra definido en el el archivo index.js dent
     meta: {
       requiresAuth: true
     },
-    component: () => import(/* webpackChunkName: "register" */ '../views/Reserva.vue')
+    component: () => import(/* webpackChunkName: "reserva" */ '../views/Reserva.vue')
 }
 ```
 
