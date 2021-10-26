@@ -71,6 +71,9 @@ export default new Vuex.Store({
     },
     getName(state) {
       return state.user.name
+    },
+    getId(state) {
+      return state.user.id
     }
   },
   modules: {

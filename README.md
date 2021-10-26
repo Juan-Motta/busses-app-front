@@ -131,3 +131,8 @@ router.beforeEach((to, from, next) => {
 
 * Mejorada vista reservas, ahora se muetra la informacion de la reserva y se muentra un formulario por cada pasaje especificado
 * Los formularios de la vista reserva ahora se renderizan correctamente en funcion del numero de pasajes y las validaciones funcionan correctaente para cada formulario de manera individual
+
+**0.6.2**
+
+* Ahorala vista reservas realiza la peticion a la API y guarda la informacion de la reserva correctamente
+* Optimizadas y mejoradas validaciones del formulario de reservas, ahora el formulario puede validar todos los campos en tiempo real

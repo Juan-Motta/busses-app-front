@@ -164,7 +164,48 @@
 
 			},
 			register() {
+				if (this.validateData()) {
+					isLoged()
+						.then(() => {
+							this.person.map(value => {
+								const data = {
+									usuario: this.$store.getters.getId,
+									trayecto: this.idTrayecto,
+									nombre: value.name,
+									apellido: value.last_name,
+									documento: value.document,
+									telefono: value.phone,
+									fecha_nacimiento: value.birth,
+									puesto: value.chair
+								}
+								console.log(data);
+								const token = localStorage.getItem('access')
+								const config = {
+									headers: { Authorization: `Bearer ${token}` }
+								}
+								axios.post('https://overidebusapp.herokuapp.com/api/reservas/', data, config)
+									.then(res => {
+										console.log('ok');
+									})
+									.catch(err => {
+										console.log(err.response);
+									})
+							})
+						})
+						.catch(err => {
+							console.log(err.response);
+						})
+				}
 
+			},
+			validateData() {
+				for (const { name, last_name, document, phone, chair, birth } of this.error) {
+					if (name === '' && last_name === '' && document === '' && phone === '' && chair === '' && birth === '') {
+						return true
+					} else {
+						return false
+					}
+				}
 			},
 			getChairs() {
 				/* Metodo encargado de devolver una lista con las sillas ocupadas en el trayecto */
@@ -178,58 +219,76 @@
 			},
 			validateName(name, index) {
 				/* Metodo encargado de validar los campos del nombre del formulario */
-
-				if (!name) {
+				const regex = /[a-zA-Z]/
+				const nameLen = name === null ? 0 : name.length
+				if (!regex.test(name) && nameLen > 0) {
+					this.error[index].name = 'El nombre solo debe contener letras'
+				} else if (name === '') {
 					this.error[index].name = 'El nombre no puede estar en blanco'
 				} else {
-					this.error[index].name = null
+					this.error[index].name = ''
 				}
 			},
 			validateLastName(lastName, index) {
 				/* Metodo encargado de validar los campos del apellido del formulario */
-
-				if (!lastName) {
+				const regex = /[a-zA-Z]/
+				const lastNameLen = lastName === null ? 0 : lastName.length
+				if (!regex.test(lastName) && lastNameLen > 0) {
+					this.error[index].last_name = 'El nombre solo debe contener letras'
+				} else if (lastName === '') {
 					this.error[index].last_name = 'El apellido no puede estar en blanco'
 				} else {
-					this.error[index].last_name = null
+					this.error[index].last_name = ''
 				}
 			},
 			validateDocument(document, index) {
 				/* Metodo encargado de validar los campos del documento del formulario */
-
-				if (!document) {
+				const regex = /[a-zA-Z0-9]{5,}/
+				const documentLen = document === null ? 0 : document.length
+				if (!regex.test(document) && documentLen > 0) {
+					this.error[index].document = 'El documento solo debe contener numeros y letras'
+				} else if (document === '') {
 					this.error[index].document = 'El documento no puede estar en blanco'
 				} else {
-					this.error[index].document = null
+					this.error[index].document = ''
 				}
 			},
 			validateBirth(birth, index) {
 				/* Metodo encargado de validar los campos de la fecha de nacimiento del formulario */
 
-				if (!birth) {
+				if (birth === '') {
 					this.error[index].birth = 'La fecha de nacimiento no puede estar en blanco'
 				} else {
-					this.error[index].birth = null
+					this.error[index].birth = ''
 				}
 			},
 			validatePhone(phone, index) {
 				/* Metodo encargado de validar los campos del telefono del formulario */
-
-				if (!phone) {
+				const regex = /^[0-9]{10}$/
+				const phoneLen = phone === null ? 0 : phone.length
+				if (!regex.test(phone) && phoneLen > 0) {
+					this.error[index].phone = 'El telefono solo puede contener numeros y debe tener 10 caracteres'
+				} else if (phone === '') {
 					this.error[index].phone = 'El telefono no puede estar en blanco'
 				} else {
-					this.error[index].phone = null
+					this.error[index].phone = ''
 				}
 			},
 			validateChair(chair, index) {
 				/* Metodo encargado de validar los campos de la silla del formulario */
-
-				if (!chair) {
+				const ocupedChairs = this.person.map((value, idx) => {
+					if (idx !== index) {
+						return Number(value.chair)
+					}
+				})
+				if (chair === '') {
 					this.error[index].chair = 'La silla no puede estar en blanco'
 				} else if (this.puestos.includes(Number(chair))) {
 					this.error[index].chair = 'La silla ya se encuentra ocupada'
+				} else if (ocupedChairs.includes(Number(chair))) {
+					this.error[index].chair = 'La silla ya se encuentra ocupada'
 				} else {
-					this.error[index].chair = null
+					this.error[index].chair = ''
 				}
 			},
 			credentialsRefresh() {
@@ -271,14 +330,13 @@
 				return reservas.map(reserva => {
 					return (reserva.puesto)
 				})
-			}
+			},
 		},
 		watch: {
 			person: {
 				deep: true,
-				handler(after) {
+				handler(before, after) {
 					after.map((value, index) => {
-
 						this.person[index].name = value.name
 						this.validateName(value.name, index)
 
