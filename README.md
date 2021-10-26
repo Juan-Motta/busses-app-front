@@ -126,3 +126,8 @@ router.beforeEach((to, from, next) => {
 
 * Agregado sistema de proteccion de rutas, ahora cuando un usuario quiera cceder a una ruta protegida sin estar logeado se le pediran las credenciales de autenticacion, de lo contrario se devolvera a la pagina Home
 * Agregada nueva vista, reservas (protegida)
+
+**0.6.1**
+
+* Mejorada vista reservas, ahora se muetra la informacion de la reserva y se muentra un formulario por cada pasaje especificado
+* Los formularios de la vista reserva ahora se renderizan correctamente en funcion del numero de pasajes y las validaciones funcionan correctaente para cada formulario de manera individual

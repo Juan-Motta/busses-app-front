@@ -146,7 +146,7 @@
 						v-for="viaje in viajes"
 						:key="viaje.id"
 						class="row viaje"
-						@click="selectedViaje"
+						@click="selectedViaje(viaje)"
 					>
 						<div class="row viaje-title">
 							<p>
@@ -275,10 +275,20 @@
 			formatNumber(input) {
 				return input
 			},
-			selectedViaje() {
+			selectedViaje(viaje) {
 				//TODO: Seleccionar viaje
 				if (this.$store.getters.getIsLoged) {
-					this.$router.push('Reserva')
+					const viajeObj = {
+						id: viaje.id ?? null,
+						destino: viaje.destino ?? null,
+						origen: viaje.origen ?? null,
+						fecha: viaje.fecha ?? null,
+						hora: viaje.hora ?? null,
+						precio: viaje.precio ?? null,
+						puestos: viaje.puestos ?? null,
+						pasajeros: Number(this.pasajeros) ?? 1
+					}
+					this.$router.push({ name: 'Reserva', params: viajeObj })
 				} else {
 					this.$bvModal.show('modal')
 				}
