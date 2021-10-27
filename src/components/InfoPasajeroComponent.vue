@@ -23,7 +23,10 @@
 		</div>
 
 		<div class="col-sm-12 col-md-6 col-lg-5 mt-1">
-			<form @submit.prevent="register">
+			<form
+				@submit.prevent="register"
+				autocomplete="off"
+			>
 				<div
 					v-for="index in pasajeros"
 					:key="index"
@@ -42,6 +45,7 @@
 							placeholder="Ingrese el nombre del pasajero"
 							id="nombres"
 							v-model="person[String(index-1)].name"
+							autocomplete="nope"
 						></b-form-input>
 						<div
 							v-if="error[String(index-1)].name"
@@ -58,6 +62,7 @@
 							placeholder="Ingrese el apellido del pasajero"
 							id="apellidos"
 							v-model="person[String(index-1)].last_name"
+							autocomplete="nope"
 						></b-form-input>
 						<div
 							v-if="error[String(index-1)].last_name"
@@ -74,6 +79,7 @@
 							placeholder="Ingrese el documento del pasajero"
 							id="documento"
 							v-model="person[String(index-1)].document"
+							autocomplete="nope"
 						></b-form-input>
 						<div
 							v-if="error[String(index-1)].document"
@@ -91,6 +97,7 @@
 							type="date"
 							id="birth"
 							v-model="person[String(index-1)].birth"
+							autocomplete="nope"
 						></b-form-input>
 						<div
 							v-if="error[String(index-1)].birth"
@@ -107,6 +114,7 @@
 							placeholder="Ingrese el telefono del pasajero"
 							id="telefono"
 							v-model="person[String(index-1)].phone"
+							autocomplete="nope"
 						></b-form-input>
 						<div
 							v-if="error[String(index-1)].phone"
@@ -125,6 +133,7 @@
 							type="number"
 							id="puesto"
 							v-model="person[String(index-1)].chair"
+							autocomplete="nope"
 						></b-form-input>
 						<div
 							v-if="error[String(index-1)].chair"
@@ -164,6 +173,7 @@
 
 			},
 			register() {
+				const personData = []
 				if (this.validateData()) {
 					isLoged()
 						.then(() => {
@@ -178,25 +188,40 @@
 									fecha_nacimiento: value.birth,
 									puesto: value.chair
 								}
-								console.log(data);
-								const token = localStorage.getItem('access')
-								const config = {
-									headers: { Authorization: `Bearer ${token}` }
-								}
-								axios.post('https://overidebusapp.herokuapp.com/api/reservas/', data, config)
-									.then(res => {
-										console.log('ok');
-									})
-									.catch(err => {
-										console.log(err.response);
-									})
+								personData.push(data)
 							})
+
+							Promise.all(
+								personData.map(pd => this.sendData(pd))
+							)
+								.then(res => {
+									this.$router.push({ name: 'Resumen', params: { data: res } })
+								})
+								.catch(err => {
+									console.log(err);
+								})
+
 						})
 						.catch(err => {
 							console.log(err.response);
 						})
 				}
 
+			},
+			sendData(data) {
+				return new Promise((resolve, reject) => {
+					const token = localStorage.getItem('access')
+					const config = {
+						headers: { Authorization: `Bearer ${token}` }
+					}
+					axios.post('https://overidebusapp.herokuapp.com/api/reservas/', data, config)
+						.then(res => {
+							resolve({ status: true, res: res.data })
+						})
+						.catch(err => {
+							reject({ status: false, res: err.response })
+						})
+				})
 			},
 			validateData() {
 				for (const { name, last_name, document, phone, chair, birth } of this.error) {

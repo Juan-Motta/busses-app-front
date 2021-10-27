@@ -134,5 +134,9 @@ router.beforeEach((to, from, next) => {
 
 **0.6.2**
 
-* Ahorala vista reservas realiza la peticion a la API y guarda la informacion de la reserva correctamente
+* Ahora la vista reservas realiza la peticion a la API y guarda la informacion de la reserva correctamente
 * Optimizadas y mejoradas validaciones del formulario de reservas, ahora el formulario puede validar todos los campos en tiempo real
+
+**0.7.0**
+
+* Agregada nueva vista, resumen (protegida) la cual muestra la informacion de las reservas realizadas
