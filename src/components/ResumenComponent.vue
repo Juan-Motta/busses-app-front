@@ -11,22 +11,44 @@
 		<div
 			v-for="index in numeroReservas"
 			:key="index"
-			class="info col-sm-12 col-md-8 col-lg-6 mt-2 mb-4 pb-2 pt-4"
+			class="info col-sm-12 col-md-10 col-lg-8 mt-2 mb-4 pb-2 pt-4"
 		>
 
 			<h4>Pasajero {{index}}</h4>
-			<div class="info-data">
-				<p><span>Nombres: </span>{{infoReserva[index-1].nombre}}</p>
-				<p><span>Apellidos: </span>{{infoReserva[index-1].apellido}}</p>
-				<p><span>Documento: </span>{{infoReserva[index-1].documento}}</p>
-				<p><span>Fecha de nacimiento: </span>{{infoReserva[index-1].fecha_nacimiento}}</p>
-				<p><span>Telefono: </span>{{infoReserva[index-1].telefono}}</p>
-				<p><span>Puesto: </span>{{infoReserva[index-1].puesto}}</p>
-				<p><span>Origen: </span>{{infoReserva[index-1].trayecto.origen}}</p>
-				<p><span>Destino: </span>{{ infoReserva[index-1].trayecto.destino }}</p>
-				<p><span>Fecha: </span>{{ infoReserva[index-1].trayecto.fecha }}</p>
-				<p><span>Hora: </span>{{ infoReserva[index-1].trayecto.hora }}</p>
-				<p><span>Precio: </span>{{ infoReserva[index-1].trayecto.precio }}</p>
+			<div class="info-data row">
+				<div class="col-sm-12 col-md-6">
+					<h4 class="text-center">Datos Personales</h4>
+					<b-table
+						stacked
+						borderless
+						:items="[infoReserva[index-1]]"
+						:fields="personalFields"
+					></b-table>
+					<h4 class="text-center">Datos del Viaje</h4>
+
+					<b-table
+						borderless
+						stacked
+						:items="[infoReserva[index-1]]"
+						:fields="travelFields"
+					></b-table>
+
+				</div>
+				<div class="col-sm-12 col-md-6 text-center">
+					<h4>Gracias por confiar en overide</h4>
+					<p>A continuacion encontrara un codigo QR que le permitira acceder a la informacion sobre su reserva a su vez que le permitira abordar al vehiculo</p>
+					<div class="mt-5 qrcode">
+						<qrcode-vue
+							value="#"
+							size=200
+							level="H"
+						/>
+					</div>
+
+					<div>
+						<button class="btn btn-pdf">Descargar PDF</button>
+					</div>
+				</div>
 			</div>
 
 		</div>
@@ -43,12 +65,31 @@
 
 	import axios from 'axios'
 	import { isLoged } from '../helpers/LoginHelper.js'
+	import QrcodeVue from 'qrcode.vue'
 
 	export default {
+		components: {
+			QrcodeVue
+		},
 		data() {
 			return {
 				reserva: [],
 				infoReserva: [],
+				personalFields: [
+					{ key: 'nombre', label: 'Nombre' },
+					{ key: 'apellido', label: 'Apellido' },
+					{ key: 'documento', label: 'Documento' },
+					{ key: 'fecha_nacimiento', label: 'Fecha de nacimiento' },
+					{ key: 'telefono', label: 'Telefono' },
+				],
+				travelFields: [
+					{ key: 'puesto', label: 'Puesto' },
+					{ key: 'trayecto.origen', label: 'Origen' },
+					{ key: 'trayecto.destino', label: 'Destino' },
+					{ key: 'trayecto.fecha', label: 'Fecha del viaje' },
+					{ key: 'trayecto.hora', label: 'Hora del viaje' },
+					{ key: 'trayecto.precio', label: 'Precio' },
+				],
 				numeroReservas: null
 			}
 		},
@@ -142,7 +183,6 @@
 	}
 	.info-data {
 		text-align: left;
-		padding-left: 40px;
 	}
 	.info-data span {
 		font-weight: bold;
@@ -154,5 +194,23 @@
 		padding: 3px 20px;
 		margin-top: 30px;
 		margin-bottom: 50px;
+	}
+	.table {
+		border-style: none;
+	}
+
+	.table tbody {
+		border-style: none;
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+
+	.info-data p,
+	.info-data h4 {
+		padding-left: 20px;
+		padding-right: 30px;
+	}
+	.qrcode {
+		margin-bottom: 30px;
 	}
 </style>

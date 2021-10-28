@@ -62,6 +62,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  document.title = 'OVERIDE - ' + to.name;
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (store.state.isLoged) {
       next();

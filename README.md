@@ -140,3 +140,9 @@ router.beforeEach((to, from, next) => {
 **0.7.0**
 
 * Agregada nueva vista, resumen (protegida) la cual muestra la informacion de las reservas realizadas
+
+**0.7.1**
+
+* Mejorada vista resumen, agregada visualizacion reusmen todas las reservas realizadas y caracteristicas por implementar.
+* Agregado codigo qr para visualizacion externa de la reserva
+* Agregado boton para poder descargar version pdf de la reserva
