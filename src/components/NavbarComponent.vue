@@ -139,6 +139,11 @@
 		color: black;
 	}
 
+	.navbar-route span a:hover {
+		text-decoration: none;
+		color: #8b30e8;
+	}
+
 	.navbar-button {
 		font-weight: bold;
 		color: white;
@@ -149,6 +154,10 @@
 		align-items: center;
 		justify-content: center;
 		cursor: pointer;
+	}
+
+	.navbar-button:hover {
+		background-color: #b177ed;
 	}
 
 	.navbar-button a {

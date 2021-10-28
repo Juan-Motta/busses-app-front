@@ -11,7 +11,7 @@
 		<div class="col-sm-12 col-md-12 mb-5 img-container">
 
 			<b-img
-				:src="require('../assets/explore.svg')"
+				:src="require('../assets/snap.svg')"
 				alt="Map"
 				fluid
 				center

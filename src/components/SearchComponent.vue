@@ -260,6 +260,10 @@
 		padding: 3px 20px;
 	}
 
+	.btn:hover {
+		background-color: #b177ed;
+	}
+
 	.error {
 		color: red;
 		text-align: left;

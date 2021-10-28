@@ -250,7 +250,6 @@
 				const config = {
 					headers: { Authorization: `Bearer ${token}` }
 				}
-				console.log(this.person);
 				const body = {
 					nombre: this.person.nombre,
 					apellido: this.person.apellido,

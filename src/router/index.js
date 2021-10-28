@@ -55,6 +55,7 @@ const routes = [
   },
   {
     path: '/perfil',
+    redirect: '/personal-info',
     name: 'Perfil',
     meta: {
       requiresAuth: true
@@ -78,6 +79,13 @@ const routes = [
         component: () => import(/* webpackChunkName: "reservasPersonales" */ '../views/ReservasPersonales.vue')
       },
     ]
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    component: () => import(
+      /* webpackChunkName: "NotFoundPage"*/
+      "../views/NotFound.vue"
+    )
   }
 ]
 
