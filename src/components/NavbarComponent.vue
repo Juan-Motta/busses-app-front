@@ -29,7 +29,10 @@
 			v-if="isLoged"
 		>
 			<div class="row">
-				<div class="col-sm-12 col-md-6 col-lg-7 navbar-name">
+				<div
+					class="col-sm-12 col-md-6 col-lg-7 navbar-name"
+					v-on:click="toProfile"
+				>
 					<b-icon-person-circle
 						scale="2"
 						style="margin-right: 20px"
@@ -75,6 +78,10 @@
 						this.$router.push({ name: 'Home' })
 					})
 			},
+			toProfile() {
+				console.log('lcick');
+				this.$router.push({ name: 'Perfil' })
+			}
 		},
 		computed: {
 			name() {

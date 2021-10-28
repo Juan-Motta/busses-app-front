@@ -52,6 +52,32 @@ const routes = [
       requiresAuth: true
     },
     component: () => import(/* webpackChunkName: "resumen" */ '../views/Resumen.vue')
+  },
+  {
+    path: '/perfil',
+    name: 'Perfil',
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import(/* webpackChunkName: "perfil" */ '../views/Perfil.vue'),
+    children: [
+      {
+        path: '/personal-info',
+        name: 'PersonalInfo',
+        meta: {
+          requiresAuth: true
+        },
+        component: () => import(/* webpackChunkName: "personalInfo" */ '../views/PersonalInfo.vue')
+      },
+      {
+        path: '/reservas-personales',
+        name: 'ReservasPersonales',
+        meta: {
+          requiresAuth: true
+        },
+        component: () => import(/* webpackChunkName: "reservasPersonales" */ '../views/ReservasPersonales.vue')
+      },
+    ]
   }
 ]
 

@@ -146,3 +146,10 @@ router.beforeEach((to, from, next) => {
 * Mejorada vista resumen, agregada visualizacion reusmen todas las reservas realizadas y caracteristicas por implementar.
 * Agregado codigo qr para visualizacion externa de la reserva
 * Agregado boton para poder descargar version pdf de la reserva
+
+**0.8.0**
+
+* Agregadas nuevas vistas: Perfil, PersonalInfo, ReservasPersonales (protegidas)
+* Agregada opcion a la vista ReservasPersonales de listar todas las reservas asociadas al usuario
+* Agregada opcion a la vista ReservasPersonales de modificar los datos personales asociados a una reserva y eliminar la reserva
+* Actualizadas vistas Nosotros y Rutas 
