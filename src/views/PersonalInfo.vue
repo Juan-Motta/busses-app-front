@@ -3,7 +3,7 @@
 		<h2>Mi informción personal</h2>
 
 		<div class="row">
-			<div class="col-12 mt-3 pl-5">
+			<div class="col-12 mt-3">
 				<b-table
 					stacked
 					borderless
@@ -37,7 +37,6 @@
 		},
 		created() {
 			this.personalInfo = this.$store.getters.getUserData
-			console.log(this.personalInfo);
 		}
 	}
 </script>
