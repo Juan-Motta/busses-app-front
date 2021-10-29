@@ -153,3 +153,9 @@ router.beforeEach((to, from, next) => {
 * Agregada opcion a la vista ReservasPersonales de listar todas las reservas asociadas al usuario
 * Agregada opcion a la vista ReservasPersonales de modificar los datos personales asociados a una reserva y eliminar la reserva
 * Actualizadas vistas Nosotros y Rutas 
+
+**0.8.1**
+
+* Agredada visualizacion de informacion del usuario en la vista PersonalInfo
+* Crregidos errores de visualización
+* Agregada vista para rutas no definidas

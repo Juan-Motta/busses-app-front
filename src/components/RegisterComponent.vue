@@ -117,7 +117,7 @@
 						<label
 							for="last-name"
 							class="row"
-						>Appellidos:</label>
+						>Apellidos:</label>
 						<b-form-input
 							placeholder="Ingrese su apellido"
 							id="last-name"
@@ -225,8 +225,10 @@
 						.then(res => {
 							this.message = res.data.message
 							this.$bvModal.show('modal')
+							this.$router.push({ name: 'Login' })
 						})
 						.catch(err => {
+							console.log(err.response);
 							this.message = 'Error al crear el usuario, por favor verifique la informacion suministrada'
 							this.$bvModal.show('modal')
 						})
