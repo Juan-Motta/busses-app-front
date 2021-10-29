@@ -6,6 +6,8 @@
 Overide es una applicacion creada con el fin de poder gestionar la compra de pasajes de buses intermunicipales.
 Esta aplicacion esta creada como proyecto para el ciclo 3 de MisionTic20222
 
+<a href="https://busses-app-overide.netlify.app/">Click para acceder a la pagina</a>
+
 ## Tecnologias utilizadas
 
 La applicacion fue contruida usando las siguientes tecnologias:
@@ -153,9 +155,12 @@ router.beforeEach((to, from, next) => {
 * Agregada opcion a la vista ReservasPersonales de listar todas las reservas asociadas al usuario
 * Agregada opcion a la vista ReservasPersonales de modificar los datos personales asociados a una reserva y eliminar la reserva
 * Actualizadas vistas Nosotros y Rutas 
+<<<<<<< HEAD
 
 **0.8.1**
 
 * Agredada visualizacion de informacion del usuario en la vista PersonalInfo
 * Crregidos errores de visualización
 * Agregada vista para rutas no definidas
+=======
+>>>>>>> 2d9325ebdac3671572686f20a4a8a3d5c71b7ca4
